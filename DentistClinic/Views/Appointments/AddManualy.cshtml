@@ -1,0 +1,28 @@
+﻿@model Appointment
+@{
+    ViewData["Title"] = "AddManualy";
+}
+
+<h1 class="text-center text-info m-5">Add Manualy</h1>
+
+<form method="post" class="w-50 m-auto">
+
+    <label asp-for="Date"></label>
+    <input type="date" asp-for="Date" class="form-control" />
+    <span class="text-danger" asp-validation-for="Date"></span><br />
+
+    <label asp-for="StartTime"></label>
+    <input type="time" asp-for="StartTime" class="form-control" />
+    <span class="text-danger" asp-validation-for="StartTime"></span><br />
+
+    <label asp-for="EndTime"></label>
+    <input type="time" asp-for="EndTime" class="form-control" />
+    <span class="text-danger" asp-validation-for="EndTime"></span><br />
+    
+    <input type="submit" class="btn btn-info m-auto" />
+   
+</form>
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial"></partial>
+}

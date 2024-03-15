@@ -1,0 +1,53 @@
+﻿@model IEnumerable<Appointment>
+@{
+    ViewData["Title"] = "PreviousAppointments";
+}
+
+
+<h1 class="text-center text-info m-5">Previous Appointments</h1>
+<table class=" table table-bordered table-hover table-light m-auto w-75">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>StartTime</th>
+            <th>EndTime</th>
+            <th>Status</th>
+            <th>Resreve By</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model?.Count() == 0)
+        {
+            <tr> <td colspan="7" class="text-center">There is no Previous Appointments</td></tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Date</td>
+                    <td>@item.StartTime</td>
+                    <td>@item.EndTime</td>
+                    @if (item.PatientId == null)
+                    {
+                        <td class="text-success">Avalible</td>
+                    }
+                    else
+                    {
+                        <td class="text-danger">Reserved</td>
+                    }
+                    <td>@item.Patient?.FullName</td>
+                    <td>
+                        <a asp-route-id="@item?.Id" asp-action="Delete" class="btn btn-danger"
+                           onclick="return confirm('Are you sure you want to delete this Appointment?')">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+
+</table>
+
